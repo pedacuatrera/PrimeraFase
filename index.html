@@ -6,9 +6,7 @@
     <title>PEDACUATRERA — 27.06.2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Mantenemos la fuente original de brocha/grafiti que te gustó -->
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk:wght=400;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para los logos vectoriales de las redes sociales -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -34,89 +32,91 @@
             background-image: 
                 radial-gradient(circle at 50% 30%, rgba(209, 168, 65, 0.08) 0px, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0px, transparent 40%);
-            perspective: 1200px; /* Perspectiva global para el efecto 3D */
         }
 
-        /* --- CONTENEDOR CENTRAL --- */
         .main-wrapper {
             max-width: 650px;
             width: 100%;
             margin: 0 auto;
-            padding: 60px 20px 160px 20px;
+            padding: 40px 16px 160px 16px;
             text-align: center;
         }
 
-        /* --- CONTEXTO DEL TÍTULO INTERACTIVO LETRA POR LETRA --- */
+        /* --- CONTENEDOR DE TÍTULO OPTIMIZADO PARA IPHONE --- */
         .title-container {
             position: relative;
-            margin-bottom: 75px;
-            padding-top: 20px;
-            transform-style: preserve-3d;
-            display: inline-block;
+            margin-bottom: 65px;
+            padding: 20px 0;
+            width: 100%;
         }
 
-        /* Estilo base idéntico a tu imagen original */
         .main-title {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 5.5rem;
-            line-height: 0.9;
+            /* Forzamos tipografía sólida del sistema para evitar fallos de carga */
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            
+            /* Ajuste elástico perfecto para que quepa en cualquier pantalla sin cortarse */
+            font-size: clamp(2.3rem, 10.5vw, 5rem);
+            
+            line-height: 0.95;
             text-transform: uppercase;
-            color: #fcfcfc;
-            display: flex;
-            justify-content: center;
-            gap: 2px;
-            cursor: pointer;
-            user-select: none;
-            transform-style: preserve-3d;
-            transform: rotate(-3deg); /* Inclinación gamberra original */
+            color: #ffffff;
+            display: block;
+            width: 100%;
+            letter-spacing: -0.5px;
+            
+            /* Inclinación y distorsión sutil estilo póster urbano */
+            transform: rotate(-3.5deg) skewX(-3deg);
+            
+            /* SOLUCIÓN AL BUG DE SAFARI: 
+               Eliminamos el -webkit-text-stroke que rompía la letra y creamos un contorno 
+               y sombra ultra-gruesos con text-shadow en bloque sólido negro. */
+            text-shadow: 
+                -2px -2px 0 #000,  1px -2px 0 #000, -2px  1px 0 #000,  1px  1px 0 #000,
+                -3px -3px 0 #000,  3px -3px 0 #000, -3px  3px 0 #000,  3px  3px 0 #000,
+                -4px  0px 0 #000,  4px  0px 0 #000,  0px -4px 0 #000,  0px  4px 0 #000,
+                 4px  4px 0px #000, 5px  5px 0px #000, 6px  6px 10px rgba(0,0,0,0.8);
         }
 
-        /* Cada letra individual se vuelve un objeto interactivo 3D */
-        .interactive-letter {
-            display: inline-block;
-            transform-style: preserve-3d;
-            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), text-shadow 0.2s ease-out;
-            will-change: transform, text-shadow;
-            text-shadow: 4px 4px 0px #000;
-        }
-
+        /* Hashtag estilo sticker con caja recortada */
         .lema-graffiti {
             position: absolute;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 1.6rem;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: clamp(0.85rem, 3.8vw, 1.25rem);
             color: var(--gold-poster);
-            bottom: -35px;
+            bottom: -15px;
             left: 50%;
-            transform: translateX(-50%) translateZ(40px) rotate(1deg);
+            transform: translateX(-50%) rotate(1deg);
             background: #050406;
-            padding: 2px 15px;
-            border: 2px dashed rgba(209, 168, 65, 0.7);
+            padding: 4px 14px;
+            border: 2px dashed rgba(209, 168, 65, 0.9);
             white-space: nowrap;
-            text-shadow: 2px 2px 0px #000;
             letter-spacing: 1px;
-            pointer-events: none;
-            transition: transform 0.3s ease-out;
+            text-shadow: 2px 2px 0px #000;
+            box-shadow: 3px 3px 0px #000;
         }
 
+        /* --- LOGÍSTICA --- */
         .event-info-box {
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 4.5vw, 1.1rem);
             letter-spacing: 2px;
-            margin: 45px 0 20px 0;
+            margin: 40px 0 20px 0;
             border: 2px solid var(--text-white);
             padding: 12px 25px;
             display: inline-block;
             background: rgba(0,0,0,0.8);
+            width: 90%;
+            max-width: 400px;
         }
 
-        /* --- BADGES --- */
         .badges-row {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 30px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 1px;
@@ -126,6 +126,7 @@
             border: 1px solid rgba(255,255,255,0.15);
             padding: 6px 12px;
             background: rgba(255,255,255,0.02);
+            white-space: nowrap;
         }
         .badge-item span {
             color: var(--gold-poster);
@@ -135,19 +136,22 @@
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin: 30px 0;
+            width: 100%;
         }
 
         .countdown-box {
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(211, 168, 65, 0.2);
-            padding: 12px 20px;
-            min-width: 95px;
+            padding: 10px;
+            flex: 1;
+            max-width: 90px;
+            min-width: 70px;
         }
 
         .countdown-num {
-            font-size: 2.5rem;
+            font-size: clamp(1.6rem, 6vw, 2.3rem);
             font-weight: 700;
             color: var(--gold-poster);
             display: block;
@@ -155,7 +159,7 @@
         }
 
         .countdown-label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
@@ -168,8 +172,9 @@
             background: rgba(0, 0, 0, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.1);
             max-width: 380px;
+            width: 100%;
             margin: 35px auto 40px auto;
-            padding: 20px;
+            padding: 20px 15px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
         }
 
@@ -223,7 +228,6 @@
             font-size: 0.75rem;
             display: flex;
             justify-content: center;
-            gap: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -249,21 +253,22 @@
             color: #000;
             background: var(--gold-poster);
             border: none;
-            padding: 20px 45px;
+            padding: 18px 40px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             margin-bottom: 20px;
+            width: 90%;
+            max-width: 320px;
             box-shadow: 0 5px 15px rgba(211, 168, 65, 0.3);
             transition: all 0.3s ease;
         }
 
         .btn-vandal:hover {
             background: #fff;
-            transform: scale(1.02);
         }
 
-        /* --- INSTRUCCIONES DE COMPRA --- */
+        /* --- INSTRUCCIONES --- */
         .purchase-instructions {
             max-width: 420px;
             margin: 0 auto 50px auto;
@@ -280,15 +285,7 @@
             margin-bottom: 8px;
         }
 
-        .purchase-instructions p:last-child {
-            margin-bottom: 0;
-        }
-
-        .purchase-instructions strong {
-            color: var(--gold-poster);
-        }
-
-        /* --- SECCIÓN INFERIOR --- */
+        /* --- UBICACIÓN --- */
         .footer-section {
             margin-top: 20px;
             border-top: 1px dashed rgba(211, 168, 65, 0.2);
@@ -306,50 +303,38 @@
 
         .map-container {
             width: 100%;
-            height: 270px;
-            margin-bottom: 40px;
+            height: 250px;
+            margin-bottom: 30px;
             border: 1px solid rgba(211, 168, 65, 0.3);
             background: #111;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             filter: grayscale(1) invert(0.9) contrast(1.2);
-            transition: filter 0.5s ease;
-        }
-        
-        .map-container:hover {
-            filter: grayscale(0) invert(0) contrast(1);
         }
 
         .socials-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
         }
 
         .social-link {
             color: var(--text-white);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
             border: 1px solid rgba(211, 168, 65, 0.3);
-            padding: 12px 28px;
-            transition: all 0.3s ease;
+            padding: 12px 20px;
             background: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex: 1;
+            max-width: 180px;
+            justify-content: center;
         }
 
         .social-link i {
-            font-size: 1.3rem;
             color: var(--gold-poster);
-        }
-
-        .social-link:hover {
-            background: var(--gold-poster);
-            color: #000;
-            border-color: var(--gold-poster);
         }
 
         /* --- MARQUESINA --- */
@@ -380,24 +365,14 @@
             padding: 0 40px;
         }
 
-        .ticker-highlight {
-            color: #fff;
-            border-bottom: 1px solid var(--gold-poster);
-        }
-
         @keyframes ticker {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-50%, 0, 0); }
         }
 
-        @media (max-width: 768px) {
-            .main-title { font-size: 3.3rem; }
-            .lema-graffiti { font-size: 1.1rem; bottom: -30px; }
-            .countdown-num { font-size: 2rem; }
-            .countdown-box { min-width: 75px; padding: 8px; }
-            .badges-row { font-size: 0.7rem; gap: 8px; }
-            .socials-container { flex-direction: column; gap: 12px; align-items: center; }
-            .social-link { width: 80%; justify-content: center; }
+        @media (max-width: 400px) {
+            .socials-container { flex-direction: column; align-items: center; }
+            .social-link { width: 100%; max-width: 260px; }
         }
     </style>
 </head>
@@ -405,13 +380,13 @@
 
     <div class="main-wrapper">
         
-        <!-- HEADER INTERACTIVO CON LETRAS SEPARADAS -->
+        <!-- HEADER SEGURO Y URBANIZADO PARA IPHONE -->
         <div class="title-container">
-            <h1 class="main-title" id="vandalTitle">PEDACUATRERA</h1>
-            <div class="lema-graffiti" id="vandalLema">#estavapordoñasoco</div>
+            <h1 class="main-title">PEDACUATRERA</h1>
+            <div class="lema-graffiti">#estavapordoñasoco</div>
         </div>
 
-        <!-- LOGÍSTICA OFICIAL -->
+        <!-- LOGÍSTICA -->
         <div>
             <div class="event-info-box">📍 PABELLÓN ALTAVISTA</div>
         </div>
@@ -423,7 +398,7 @@
             <div class="badge-item">🔞 +18</div>
         </div>
 
-        <!-- CUENTA REGRESIVA AL EVENTO -->
+        <!-- CUENTA REGRESIVA -->
         <div class="countdown-container">
             <div class="countdown-box">
                 <span class="countdown-num" id="days">00</span>
@@ -443,7 +418,7 @@
             </div>
         </div>
 
-        <!-- CALENDARIO DE RESERVA FASE 1 -->
+        <!-- CALENDARIO DE RESERVA -->
         <div class="calendar-section">
             <div class="calendar-month">
                 <i class="fa-regular fa-calendar-days"></i> JUNIO 2026
@@ -493,21 +468,21 @@
             <div class="calendar-legend">
                 <div class="legend-item">
                     <span class="legend-color" style="background: var(--gold-poster);"></span>
-                    <span>Primera Fase ($149)</span>
+                    <span>Preventa Fase 1 ($149)</span>
                 </div>
             </div>
         </div>
 
-        <!-- ACCIÓN PRINCIPAL (ENLACE MERCADO PAGO) -->
+        <!-- COMPRA -->
         <a href="https://mpago.la/2Wg9qmJ" target="_blank" class="btn-vandal">Adquirir Preventa</a>
 
-        <!-- INDICACIONES DE PAGO -->
+        <!-- INDICACIONES -->
         <div class="purchase-instructions">
             <p>📝 <strong>Importante:</strong> Al realizar tu compra, asegúrate de <strong>escribir correctamente tus datos</strong> en el formulario de pago.</p>
-            <p>✉️ Una vez procesado y validado el pago, nosotros te enviaremos una <strong>confirmación directa al correo electrónico</strong> que registraste.</p>
+            <p>✉️ Una vez procesado el pago, te enviaremos una <strong>confirmación directa al correo electrónico</strong> que registraste.</p>
         </div>
 
-        <!-- SECCIÓN DE CIERRE CON MAPA REAL Y LOGOS -->
+        <!-- FOOTER -->
         <div class="footer-section">
             <div class="footer-title">UBICACIÓN Y COMUNIDAD</div>
             
@@ -518,8 +493,7 @@
                     height="100%" 
                     style="border:0;" 
                     allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
+                    loading="lazy">
                 </iframe>
             </div>
 
@@ -535,106 +509,24 @@
 
     </div>
 
-    <!-- MARQUESINA FASE 1 -->
+    <!-- MARQUESINA -->
     <div class="ticket-ticker">
         <div class="ticker-wrap">
-            <div class="ticker-item">PRIMERA FASE: <span class="ticker-highlight">$149 MXN</span></div>
+            <div class="ticker-item">PRIMERA FASE: $149 MXN</div>
             <div class="ticker-item">• VÁLIDO DEL 8 AL 15 DE JUNIO</div>
             <div class="ticker-item">• SOLO LOS PRIMEROS 150 BOLETOS</div>
             <div class="ticker-item">• HORARIO: 9 PM HASTA LAS 3 AM</div>
-            <div class="ticker-item">• DISPONIBLES: <span class="ticket-count">150</span> / 150</div>
+            <div class="ticker-item">• DISPONIBLES: 150 / 150</div>
             
-            <div class="ticker-item">PRIMERA FASE: <span class="ticker-highlight">$149 MXN</span></div>
+            <div class="ticker-item">PRIMERA FASE: $149 MXN</div>
             <div class="ticker-item">• VÁLIDO DEL 8 AL 15 DE JUNIO</div>
             <div class="ticker-item">• SOLO LOS PRIMEROS 150 BOLETOS</div>
             <div class="ticker-item">• HORARIO: 9 PM HASTA LAS 3 AM</div>
-            <div class="ticker-item">• DISPONIBLES: <span class="ticket-count">150</span> / 150</div>
+            <div class="ticker-item">• DISPONIBLES: 150 / 150</div>
         </div>
     </div>
 
     <script>
-        // --- INYECCIÓN Y SEPARACIÓN DINÁMICA DE LETRAS ---
-        const titleContainer = document.getElementById('vandalTitle');
-        const text = titleContainer.innerText;
-        titleContainer.innerHTML = ''; // Limpiamos el texto plano
-
-        // Dividimos el texto en letras individuales para poder manipularlas por separado
-        const letters = text.split('').map((char) => {
-            const span = document.createElement('span');
-            span.innerText = char;
-            span.classList.add('interactive-letter');
-            titleContainer.appendChild(span);
-            return span;
-        });
-
-        const lema = document.getElementById('vandalLema');
-
-        // --- CÁLCULO DE MOVIMIENTO ELÁSTICO 3D ---
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            letters.forEach((letter, index) => {
-                const rect = letter.getBoundingClientRect();
-                // Encontrar el centro geométrico de cada letra individual
-                const letterX = rect.left + rect.width / 2;
-                const letterY = rect.top + rect.height / 2;
-
-                // Medir distancia entre el cursor y la letra actual
-                const deltaX = mouseX - letterX;
-                const deltaY = mouseY - letterY;
-                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-                // El rango de influencia del imán es de 350 píxeles
-                if (distance < 350) {
-                    const force = (350 - distance) / 350; // Fuerza exponencial invertida
-                    
-                    // Rotación en base al ángulo de proximidad
-                    const rotX = -(deltaY / 10) * force;
-                    const rotY = (deltaX / 10) * force;
-                    
-                    // Pequeño empuje posicional magnético
-                    const moveX = (deltaX / 15) * force;
-                    const moveY = (deltaY / 15) * force;
-
-                    // Desplazamiento reactivo de la sombra proyectada
-                    const shadowX = Math.round(-deltaX / 25);
-                    const shadowY = Math.round(-deltaY / 25);
-
-                    letter.style.transform = `translate3d(${moveX}px, ${moveY}px, ${60 * force}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotY * 0.1}deg)`;
-                    letter.style.textShadow = `
-                        ${shadowX * 0.3}px ${shadowY * 0.3}px 0px #000,
-                        ${shadowX * 0.6}px ${shadowY * 0.6}px 0px #000,
-                        ${shadowX}px ${shadowY}px 0px #000,
-                        ${shadowX * 1.5}px ${shadowY * 1.5}px 12px rgba(0,0,0,0.8)
-                    `;
-                } else {
-                    // Si el ratón está lejos, regresa a su estado inicial de descanso
-                    letter.style.transform = 'translate3d(0,0,0) rotateX(0deg) rotateY(0deg) rotateZ(0deg)';
-                    letter.style.textShadow = '4px 4px 0px #000';
-                }
-            });
-
-            // Parallax sutil independiente para el hashtag de abajo
-            const containerRect = titleContainer.getBoundingClientRect();
-            const cX = containerRect.left + containerRect.width / 2;
-            const cY = containerRect.top + containerRect.height / 2;
-            const lX = (mouseX - cX) / 25;
-            const lY = (mouseY - cY) / 25;
-            lema.style.transform = `translateX(-50%) translate3d(${lX}px, ${lY}px, 40px) rotate(1deg)`;
-        });
-
-        // Retornar todo de golpe al salir de la ventana del navegador
-        document.addEventListener('mouseleave', () => {
-            letters.forEach(letter => {
-                letter.style.transform = 'translate3d(0,0,0) rotateX(0deg) rotateY(0deg) rotateZ(0deg)';
-                letter.style.textShadow = '4px 4px 0px #000';
-            });
-            lema.style.transform = 'translateX(-50%) translateZ(40px) rotate(1deg)';
-        });
-
-
-        // --- SCRIPT DE CUENTA REGRESIVA ESTABLE ---
         const targetDate = new Date("2026-06-27T22:00:00-06:00").getTime();
 
         const countdown = () => {
